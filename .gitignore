@@ -1,0 +1,6 @@
+out/*
+aws_s3.*
+.idea/*
+*.iml
+target/*
+src/main/webapp/WEB-INF/spring/applicationContext.xml
