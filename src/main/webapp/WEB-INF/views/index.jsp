@@ -1,16 +1,30 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ysw02
-  Date: 2021-01-31
-  Time: 오후 7:56
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@page language="java" contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script defer src = "resources/js/face-api.min.js"></script>
+  <script defer src = "resources/js/script.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      position: absolute;
+    }
+  </style>
 </head>
 <body>
-<h6>AWESOME에 오신 여러분들 환영합니다.</h6>
+  <video id="video" width="720" height="560" autoplay muted></video>
 </body>
 </html>
