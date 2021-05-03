@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<h6>WAPP에 오신 여러분들 환영합니다.</h6>
+<h6>AWESOME에 오신 여러분들 환영합니다.</h6>
 </body>
 </html>
