@@ -1,8 +1,10 @@
 package com.test.controller;
 
+import com.test.dto.FaceData;
 import com.test.dto.TestDto;
 import com.test.service.test.TestService;
 import com.test.util.firebase.FirebaseMessagingSnippets;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
+import java.util.*;
 
 @Controller
 public class TestController {
@@ -85,6 +87,22 @@ public class TestController {
             System.out.println("title: " + title);
             System.out.println("content: " + content);
             firebaseMessagingSnippets.test_send_FCM(fcm, title, content, req);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/addData", method = RequestMethod.POST)
+    public String addData(@RequestParam(value="dataList") List<String> dataList){
+        try{
+            ArrayList<FaceData> facdData = new ArrayList<FaceData>();
+
+            System.out.println(dataList);
+
+            /*for (String data: dataList) {
+                System.out.println(data);
+            }*/
         }catch (Exception e){
             e.printStackTrace();
         }
