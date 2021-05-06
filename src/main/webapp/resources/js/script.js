@@ -27,7 +27,15 @@ video.addEventListener('play', () => {
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-    console.log(detections)
-    
+
+    const landmarks = await faceapi.detectFaceLandmarks(video)
+    const getMouth = landmarks.getMouth()
+    const getLeftEye = landmarks.getLeftEye()
+    const getRightEye = landmarks.getRightEye()
+
+    console.log("Mouth Position = "+JSON.stringify(getMouth))
+    console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
+    console.log("Right Eye Position = "+JSON.stringify(getRightEye))
+
   }, 100)
 })
