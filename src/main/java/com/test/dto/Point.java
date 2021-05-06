@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class Point {
     private String pos;
-    private int data;
+    private double data;
 }
