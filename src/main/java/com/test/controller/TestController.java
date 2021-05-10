@@ -34,7 +34,7 @@ public class TestController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "index";
+        return "index1";
     }
 
     @GetMapping("/test.do")

@@ -49,7 +49,7 @@ function to_ajax(data){
   };
 
   $.ajax({
-    url         :   "/addData",
+    url         :   "/createData/addData",
     dataType    :   "json",
     type        :   "post",
     data        :   objParams,
