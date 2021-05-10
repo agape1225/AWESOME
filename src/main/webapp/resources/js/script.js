@@ -33,13 +33,13 @@ video.addEventListener('play', () => {
     const getLeftEye = landmarks.getLeftEye()
     const getRightEye = landmarks.getRightEye()
 
-    to_ajax(JSON.stringify(getMouth));
+    to_ajax(JSON.stringify(getMouth))
 
     console.log("Mouth Position = "+JSON.stringify(getMouth))
     console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
     console.log("Right Eye Position = "+JSON.stringify(getRightEye))
 
-  }, 100)
+  }, 1000)
 })
 
 function to_ajax(data){
