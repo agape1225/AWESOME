@@ -1,7 +1,9 @@
 package com.test.controller;
 
 import com.test.dto.FaceData;
+import com.test.dto.Point;
 import com.test.dto.TestDto;
+import com.test.service.faceData.FaceDataService;
 import com.test.service.test.TestService;
 import com.test.util.firebase.FirebaseMessagingSnippets;
 import lombok.var;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -93,19 +96,5 @@ public class TestController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/addData", method = RequestMethod.POST)
-    public String addData(@RequestParam(value="dataList") List<String> dataList){
-        try{
-            ArrayList<FaceData> facdData = new ArrayList<FaceData>();
 
-            System.out.println(dataList);
-
-            /*for (String data: dataList) {
-                System.out.println(data);
-            }*/
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return "redirect:/";
-    }
 }
