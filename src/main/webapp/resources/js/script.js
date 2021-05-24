@@ -29,11 +29,12 @@ video.addEventListener('play', () => {
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
 
     const landmarks = await faceapi.detectFaceLandmarks(video)
+    //landmarks.get()
     const getMouth = landmarks.getMouth()
     const getLeftEye = landmarks.getLeftEye()
     const getRightEye = landmarks.getRightEye()
 
-    to_ajax(JSON.stringify(getMouth));
+    to_ajax(JSON.stringify(landmarks.positions));
 
     console.log("Mouth Position = "+JSON.stringify(getMouth))
     console.log("Left Eye Position = "+JSON.stringify(getLeftEye))

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class FaceDataController {
         return "index";
     }
 
-    @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
+/*    @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
     public String addData(@RequestParam(value="dataList") List<String> dataList){
         try{
 
@@ -83,5 +84,21 @@ public class FaceDataController {
             e.printStackTrace();
         }
         return "redirect:/";
+    }*/
+
+    @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
+    public String addData(@RequestParam(value="dataList") String dataList){
+        try{
+            //String buff = dataList.replaceAll("[\\[\"\\{:x_y_\\}\\]]","");
+            String buff = dataList.replaceAll("[\"\\{:x_y_\\}]","");
+            System.out.println(buff + ",");
+            //System.out.println(dataList.size());
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "redirect:/";
     }
+
 }
