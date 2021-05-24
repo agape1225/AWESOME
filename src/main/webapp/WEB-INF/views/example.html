@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<meta charset="utf-8" />
+      <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-tubeplayer/2.1.0/jquery.tubeplayer.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+    
+      
+</head>
+
+<div id="app">
+  <div id='quiz' v-for="x in quiz">   
+    {{x.question}}
+    <button>O</button>
+    <button>x</button>
+  </div>
+  
+</div>
+<script>
+
+  vue = new Vue({
+        el :"#app",
+        data : {
+            quiz : [
+              {time: 265, question:'퀴즈1', type:'0', correct:'1'},
+              {time: 280, question:'퀴즈2', type:'0', correct:'0'},
+              {time: 290, checkboxEx:[
+                  {num: 1, example:"객체지향"},
+                  {num: 2, example:"모바일"},
+                  {num: 3, example:"웹개발"},
+                  {num: 4, example:"UNIX서버"},
+                  {num: 5, example:"선형대수"}]
+                  , type:'1', correct:'3'
+              }
+              ]
+        }
+    });    
+</script>

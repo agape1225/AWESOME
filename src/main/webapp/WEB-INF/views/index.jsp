@@ -26,6 +26,7 @@
   </style>
 </head>
 <body>
+  <%--<h1> Test another tag</h1>--%>
   <video id="video" width="720" height="560" autoplay muted></video>
 </body>
 </html>

@@ -5,11 +5,14 @@ import com.test.dto.Point;
 import com.test.service.faceData.FaceDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,7 +24,17 @@ public class FaceDataController {
     @Autowired
     FaceDataService faceDataService;
 
-    @RequestMapping(value = "/addData", method = RequestMethod.POST)
+    @GetMapping("/createData")
+    public String main(Model model){
+        try{
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "index";
+    }
+
+/*    @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
     public String addData(@RequestParam(value="dataList") List<String> dataList){
         try{
 
@@ -71,5 +84,21 @@ public class FaceDataController {
             e.printStackTrace();
         }
         return "redirect:/";
+    }*/
+
+    @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
+    public String addData(@RequestParam(value="dataList") String dataList){
+        try{
+            //String buff = dataList.replaceAll("[\\[\"\\{:x_y_\\}\\]]","");
+            String buff = dataList.replaceAll("[\"\\{:x_y_\\}]","");
+            System.out.println(buff + ",");
+            //System.out.println(dataList.size());
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "redirect:/";
     }
+
 }

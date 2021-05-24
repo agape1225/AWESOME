@@ -34,7 +34,7 @@ public class TestController {
         }catch (Exception e){
             e.printStackTrace();
         }
-        return "index";
+        return "videolist";
     }
 
     @GetMapping("/test.do")
@@ -59,6 +59,20 @@ public class TestController {
         }
 
         return "redirect:/test.do";
+    }
+
+    @RequestMapping(value = "/showVideo.do", method = RequestMethod.POST)
+    public String video(Model model, HttpServletRequest request, @RequestParam(value="data") String data){
+        try{
+
+            System.out.println("data = " + data);
+            model.addAttribute("data",data);
+            System.out.println("end video controller end");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "video";
     }
 
     @RequestMapping(value = "/post.do", method = RequestMethod.POST)
