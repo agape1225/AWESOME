@@ -36,8 +36,8 @@ video.addEventListener('play', () => {
 
     //to_ajax(JSON.stringify(landmarks.positions));
 
-<<<<<<< HEAD
-    console.log(JSON.stringify(landmarks.positions))
+
+    //console.log(JSON.stringify(landmarks.positions))
 
     var result = JSON.stringify(landmarks.positions)
     result = result.replaceAll("{","")
@@ -53,11 +53,11 @@ video.addEventListener('play', () => {
     //console.log("Mouth Position = "+JSON.stringify(getMouth))
     //console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
     //console.log("Right Eye Position = "+JSON.stringify(getRightEye))
-=======
-    console.log("Mouth Position = "+JSON.stringify(getMouth))
-    console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
-    console.log("Right Eye Position = "+JSON.stringify(getRightEye))
->>>>>>> cde3f983adb6b64162143004b02298a50a053955
+
+    //console.log("Mouth Position = "+JSON.stringify(getMouth))
+    //console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
+    //console.log("Right Eye Position = "+JSON.stringify(getRightEye))
+
     //sleep(3000)
 
   }, 100)
