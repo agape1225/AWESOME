@@ -39,6 +39,7 @@ video.addEventListener('play', () => {
     console.log("Mouth Position = "+JSON.stringify(getMouth))
     console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
     console.log("Right Eye Position = "+JSON.stringify(getRightEye))
+    //sleep(3000)
 
   }, 100)
 })

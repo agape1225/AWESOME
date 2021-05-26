@@ -1,5 +1,7 @@
 package com.test.controller;
 
+import au.com.bytecode.opencsv.CSVReader;
+import au.com.bytecode.opencsv.CSVWriter;
 import com.test.dto.FaceData;
 import com.test.dto.Point;
 import com.test.service.faceData.FaceDataService;
@@ -11,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class FaceDataController {
@@ -23,6 +27,61 @@ public class FaceDataController {
 
     @Autowired
     FaceDataService faceDataService;
+
+    @GetMapping("/testCsv")
+    public String test(Model model){
+        try{
+
+            String []str = new String[3];
+            str[0] = "1";
+            str[1] = "2";
+            str[2] = "3";
+
+            List<String> dataList = new ArrayList<>();
+            dataList.add("1");
+            dataList.add("2");
+            dataList.add("3");
+
+
+
+            /*Map<String, Object> hmap = null;
+            ArrayList<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+
+            hmap = new HashMap<String, Object>();
+            hmap.put("one", 1);
+            hmap.put("two", "한글1");
+            list.add(hmap);
+
+            hmap = new HashMap<String, Object>();
+            hmap.put("one", 11);
+            hmap.put("two", "한글22");
+            list.add(hmap);
+
+            hmap = new HashMap<String, Object>();
+            hmap.put("one", 111);
+            hmap.put("two", "한글3");
+            list.add(hmap);*/
+
+            CSVWriter cw = new CSVWriter(new OutputStreamWriter(
+                    new FileOutputStream("C:\\test.csv"),
+                    "EUC-KR"),
+                    ',',
+                    '"');
+
+            cw.writeNext(str);
+
+            /*for(Map<String, Object> m : list) {
+                //배열을 이용하여 row를 CSVWriter 객체에 write
+
+            }*/
+
+            cw.close();
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "index";
+    }
 
     @GetMapping("/createData")
     public String main(Model model){
@@ -87,17 +146,113 @@ public class FaceDataController {
     }*/
 
     @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
-    public String addData(@RequestParam(value="dataList") String dataList){
+    public String addData(@RequestParam(value="dataList") String[] dataList){
         try{
-            //String buff = dataList.replaceAll("[\\[\"\\{:x_y_\\}\\]]","");
-            String buff = dataList.replaceAll("[\"\\{:x_y_\\}]","");
-            System.out.println(buff + ",");
-            //System.out.println(dataList.size());
+
+            if(dataList != null){
+
+                System.out.println(dataList);
+
+                String[] data  = new String[137];
+
+                data[0] = "0";
+
+                for(int i = 1; i < 137; i++){
+                    String buff = dataList[i - 1].replaceAll("[\"\\{:x_y_\\}\\[\\]]","");
+                    data[i] = buff;
+                    //System.out.println(data[i] + " ");
+                }
+
+                CSVReader reader = new CSVReader(new FileReader("C:\\test.csv"));
+
+                ArrayList<String[]> existing = new ArrayList<String[]>();
+
+                String [] nextLine;
+                //String [] buff = new String[137];
+
+                while((nextLine = reader.readNext()) != null){
+                    //System.out.println(nextLine.length);
+                    String [] buff = new String[137];
+                    for(int i = 0; i < nextLine.length; i++){
+
+                        buff[i] = nextLine[i];
+                    }
+                    existing.add(buff);
+                }
+
+                existing.add(data);
+
+                reader.close();
+
+                /*CSVWriter cw = new CSVWriter(new OutputStreamWriter(
+                        new FileOutputStream("C:\\test.csv"),
+                        "EUC-KR"),
+                        ',',
+                        '"');*/
+
+                CSVWriter cw = new CSVWriter(new FileWriter("C:\\test.csv"));
+
+                for(String[] write: existing){
+                    cw.writeNext(write);
+                }
+                cw.close();
+
+                //Thread.sleep(5000);
+            }
+
+
 
 
         }catch (Exception e){
             e.printStackTrace();
         }
+
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/checkData")
+    public String testData(){
+        try{
+
+            CSVReader reader = new CSVReader(new FileReader("C:\\test.csv"));
+            String [] nextLine;
+            ArrayList<String[]> existing = new ArrayList<String[]>();
+
+
+            while((nextLine = reader.readNext()) != null){
+                //System.out.println(nextLine.length);
+                String [] buff = new String[137];
+                for(int i = 0; i < nextLine.length; i++){
+
+                    buff[i] = nextLine[i];
+                    //System.out.print(nextLine[i] + " ");
+                    //buff[i] = nextLine[i];
+                }
+
+                /*for(int i = 0; i < buff.length; i++){
+                    System.out.print(buff[i] + " ");
+                }
+                System.out.println();*/
+
+                existing.add(buff);
+                //System.out.println();
+                //existing.add(buff);
+            }
+
+            for(String[] data: existing){
+
+                for(String s_data : data){
+                    System.out.print(s_data + " ");
+                }
+                System.out.println();
+
+            }
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         return "redirect:/";
     }
 
