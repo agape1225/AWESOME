@@ -34,14 +34,32 @@ video.addEventListener('play', () => {
     const getLeftEye = landmarks.getLeftEye()
     const getRightEye = landmarks.getRightEye()
 
-    to_ajax(JSON.stringify(landmarks.positions));
+    //to_ajax(JSON.stringify(landmarks.positions));
 
-    console.log("Mouth Position = "+JSON.stringify(getMouth))
-    console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
-    console.log("Right Eye Position = "+JSON.stringify(getRightEye))
+    console.log(JSON.stringify(landmarks.positions))
+
+    var result = JSON.stringify(landmarks.positions)
+    result = result.replaceAll("{","")
+    result = result.replaceAll("}","")
+    result = result.replaceAll("x","")
+    result = result.replaceAll("y","")
+    result = result.replaceAll("_","")
+    result = result.replaceAll(":","")
+    result = result.replaceAll("\"","")
+
+    console.log(result)
+
+    //console.log("Mouth Position = "+JSON.stringify(getMouth))
+    //console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
+    //console.log("Right Eye Position = "+JSON.stringify(getRightEye))
+    //sleep(3000)
 
   }, 100)
 })
+
+String.prototype.replaceAll = function(org, dest) {
+  return this.split(org).join(dest);
+}
 
 function to_ajax(data){
 
