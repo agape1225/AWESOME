@@ -163,7 +163,7 @@ public class FaceDataController {
                     //System.out.println(data[i] + " ");
                 }
 
-                CSVReader reader = new CSVReader(new FileReader("C:\\test.csv"));
+                CSVReader reader = new CSVReader(new FileReader("C:\\face_data.csv"));
 
                 ArrayList<String[]> existing = new ArrayList<String[]>();
 
@@ -190,7 +190,7 @@ public class FaceDataController {
                         ',',
                         '"');*/
 
-                CSVWriter cw = new CSVWriter(new FileWriter("C:\\test.csv"));
+                CSVWriter cw = new CSVWriter(new FileWriter("C:\\face_data.csv"));
 
                 for(String[] write: existing){
                     cw.writeNext(write);
