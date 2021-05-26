@@ -43,22 +43,40 @@ video.addEventListener('play', () => {
 
     //console.log(JSON.stringify(landmarks.positions))
 
-   var result = JSON.stringify(landmarks.positions)
-    result = result.replaceAll("{","")
-    result = result.replaceAll("}","")
-    result = result.replaceAll("x","")
-    result = result.replaceAll("y","")
-    result = result.replaceAll("_","")
-    result = result.replaceAll(":","")
-    result = result.replaceAll("\"","")
+   var result = JSON.stringify(landmarks.positions);
+    result = result.replaceAll("{","");
+    result = result.replaceAll("}","");
+    result = result.replaceAll("x","");
+    result = result.replaceAll("y","");
+    result = result.replaceAll("_","");
+    result = result.replaceAll(":","");
+    result = result.replaceAll("\"","");
+    result = result.replaceAll("[","");
+    result = result.replaceAll("]","");
 
-    var dataModel = []
-    dataModel[0] = result
 
+    const dataModel = result.split(",");
+    let intModel = []
+    for(var i = 0; i < 136; i++){
+        intModel[i] = parseFloat(dataModel[i])
+    }
+
+    //tf.tensor(intModel);
+
+    //let final = []
+      //final[0] = intModel
+      //final[1] = intModel
+
+      //console.log(final.length)
+
+    //dataModel[0] = result
+    //console.log(intModel)
     //result = [result]
-    //const prediction = model.predict(result)
+    const prediction = model.predict(tf.tensor([intModel]))
 
-    console.log(result)
+    //console.log(prediction)
+
+      prediction.print();
 
     //console.log("Mouth Position = "+JSON.stringify(getMouth))
     //console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
