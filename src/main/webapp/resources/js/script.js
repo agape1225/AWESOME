@@ -1,4 +1,5 @@
 
+//import * as tf from '@tensorflow/tf.js';
 
 const video = document.getElementById('video')
 
@@ -27,6 +28,9 @@ video.addEventListener('play', () => {
     const resizedDetections = faceapi.resizeResults(detections, displaySize)
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
     faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
+    const model = await tf.loadLayersModel('/resources/models/model.json');
+
+
 
     const landmarks = await faceapi.detectFaceLandmarks(video)
     //landmarks.get()
@@ -34,21 +38,27 @@ video.addEventListener('play', () => {
     const getLeftEye = landmarks.getLeftEye()
     const getRightEye = landmarks.getRightEye()
 
-    to_ajax(JSON.stringify(landmarks.positions));
+    //to_ajax(JSON.stringify(landmarks.positions));
 
 
     //console.log(JSON.stringify(landmarks.positions))
 
-   /* var result = JSON.stringify(landmarks.positions)
+   var result = JSON.stringify(landmarks.positions)
     result = result.replaceAll("{","")
     result = result.replaceAll("}","")
     result = result.replaceAll("x","")
     result = result.replaceAll("y","")
     result = result.replaceAll("_","")
     result = result.replaceAll(":","")
-    result = result.replaceAll("\"","")*/
+    result = result.replaceAll("\"","")
 
-    //console.log(result)
+    var dataModel = []
+    dataModel[0] = result
+
+    //result = [result]
+    //const prediction = model.predict(result)
+
+    console.log(result)
 
     //console.log("Mouth Position = "+JSON.stringify(getMouth))
     //console.log("Left Eye Position = "+JSON.stringify(getLeftEye))

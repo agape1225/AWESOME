@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -26,6 +27,7 @@
   </style>
 </head>
 <body>
+
   <%--<h1> Test another tag</h1>--%>
   <video id="video" width="720" height="560" autoplay muted></video>
 </body>
