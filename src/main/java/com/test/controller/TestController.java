@@ -37,6 +37,16 @@ public class TestController {
         return "videolist";
     }
 
+    @GetMapping("/testScore")
+    public String testScore(Model model){
+        try{
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "score";
+    }
+
     @GetMapping("/test.do")
     public String test(Model model){
         try{

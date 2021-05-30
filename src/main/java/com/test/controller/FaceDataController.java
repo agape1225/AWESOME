@@ -2,16 +2,14 @@ package com.test.controller;
 
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
+import autovalue.shaded.com.google$.common.collect.$ForwardingNavigableSet;
 import com.test.dto.FaceData;
 import com.test.dto.Point;
 import com.test.service.faceData.FaceDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.FileOutputStream;
 import java.io.FileReader;
@@ -93,7 +91,17 @@ public class FaceDataController {
         return "index";
     }
 
-/*    @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
+    /*@GetMapping("/showGraph")
+    public String Graph(Model model){
+        try{
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "graph";
+    }*/
+
+    /*    @RequestMapping(value = "/createData/addData", method = RequestMethod.POST)
     public String addData(@RequestParam(value="dataList") List<String> dataList){
         try{
 
@@ -254,6 +262,53 @@ public class FaceDataController {
         }
 
         return "redirect:/";
+    }
+
+    @RequestMapping(value = "/createData/getGraphData", method = RequestMethod.POST)
+    public String getGraphData(Model model, @RequestParam(value="dataList") String[] dataList){
+
+        int concentrate = 0;
+        int un_concentrate = 0;
+
+        try{
+
+
+            ArrayList<Integer> arr = new ArrayList<>();
+
+            if(dataList == null)
+                System.out.println("null");
+            else
+                System.out.println("not null");
+
+            for(String buff: dataList){
+                String tmp;
+                tmp = buff.replaceAll("[\\[\\]]","");
+                //tmp = tmp.replace("\\]","");
+                //System.out.print(buff + " ");
+                //tmp = buff.substring(buff.length() - 1);
+                arr.add(Integer.parseInt(tmp));
+            }
+
+            for(Integer buff : arr){
+                System.out.print(buff);
+                if(buff == 1)
+                    concentrate++;
+                else
+                    un_concentrate++;
+            }
+
+            model.addAttribute("concentrate", concentrate);
+            model.addAttribute("un_concentrate", un_concentrate);
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        System.out.println(concentrate);
+        System.out.println(un_concentrate);
+
+        return "score";
     }
 
 }

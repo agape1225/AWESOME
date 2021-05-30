@@ -1,6 +1,8 @@
 
 //import * as tf from '@tensorflow/tf.js';
 
+var concentrate_score = new Array();
+
 const video = document.getElementById('video')
 
 Promise.all([
@@ -72,11 +74,11 @@ video.addEventListener('play', () => {
     //dataModel[0] = result
     //console.log(intModel)
     //result = [result]
-    const prediction = model.predict(tf.tensor([intModel]))
+    const prediction = model.predict(tf.tensor([intModel]));
 
     //console.log(prediction)
 
-      prediction.print();
+      //prediction.print();
 
     //console.log("Mouth Position = "+JSON.stringify(getMouth))
     //console.log("Left Eye Position = "+JSON.stringify(getLeftEye))
@@ -88,6 +90,11 @@ video.addEventListener('play', () => {
 
     //sleep(3000)
 
+      const value = prediction.toString();
+      //console.log(value.substr(-4,1));
+      concentrate_score.push(parseInt(value.substr(-4,1)));
+      //prediction[0][0]
+
   }, 100)
 })
 
@@ -95,30 +102,38 @@ String.prototype.replaceAll = function(org, dest) {
   return this.split(org).join(dest);
 }
 
-function to_ajax(data){
+function clear_data(){
+    concentrate_score = new Array();
+}
+
+function to_ajax(){
+
+    console.log(concentrate_score);
 
   var objParams = {
-    "dataList"      : data
+    "dataList"      : JSON.stringify(concentrate_score)
   };
 
   $.ajax({
-    url         :   "/createData/addData",
+    url         :   "/createData/getGraphData.do",
     dataType    :   "json",
     type        :   "post",
     data        :   objParams,
     success     :   function(retVal){
-      if(retVal.code == "OK") {
-        alert(retVal.message);
-      } else {
-        alert(retVal.message);
-      }
+        window.href.location = "graph";
     },
     error       :   function(request, status, error){
       console.log("AJAX_ERROR");
     }
+
   });
 }
 
+function setData(){
+    console.log(concentrate_score);
+
+    document.getElementById("dataList").value = concentrate_score;
+}
 
 
 
