@@ -52,18 +52,6 @@
   <%--<h1> Test another tag</h1>--%>
 
 
-  <div class="topcorner"><%--<button onclick="to_ajax()">그래프</button>--%><button onclick="clear_data()">clear</button>
-
-
-    <form action="/createData/getGraphData" method="post">
-      <input type="text" id="dataList" name="dataList"/>
-      <button onclick="setData()">그래프</button>
-    </form>
-  </div>
-
-  <div class="wrapper">
-    <div class="content"><video id="video" width="720" height="560" autoplay muted></video></div>
-  </div>
-  <%--<video id="video" width="720" height="560" autoplay muted></video>--%>
+  <video id="video" width="720" height="560" autoplay muted></video>
 </body>
 </html>

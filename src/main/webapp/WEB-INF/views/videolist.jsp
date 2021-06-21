@@ -10,26 +10,16 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
      <script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
      <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-tubeplayer/2.1.0/jquery.tubeplayer.min.js"></script>
-     </head>
-     <style>
-     ul {
-    list-style: none;
-    padding-left: 0px;
-  }
-  tbody>tr {
-    counter-increment: aaa;
-  }
-  tbody>tr>td:first-child:before {
-  content: counter(aaa) ".";
-}
-</style>
+     <%--<link href="css/table.css" rel="stylesheet" />--%>
+      <link href="<%=request.getContextPath()%>/resources/css/table.css" rel="stylesheet" />
   </head>
   <body>
-    <div id='app'>
-    <table border=1>
+    <h2>강의목록</h2>
+    <div id='app' class="table-wrapper">
+    <table border=1  class="fl-table">
       <thead>
         <tr>
-            <td>수강과목</td><td>동영상목록</td>
+            <th>수강과목</th><th>동영상목록</th>
         </tr>
       </thead>
       <tbody>
@@ -40,7 +30,12 @@
             <td>
               <ul v-for="y in x.videos">
                 <li>
-                  <button @click="video(y.youtubeid, y.seek)">[{{y.name}}-{{y.youtubeid}}]</button>
+                  <button @click="video(y.youtubeid, y.seek)" class="wrap">[{{y.name}}-{{y.youtubeid}}]</button>
+                    <%--<form action="/startVideo" method="post">
+                        <input type="hidden" name="youtubeid" value="{{y.youtubeid}}">
+                        <input type="hidden" name="seek" value={y.seek}>
+                        <button>[{{y.name}}-{{y.youtubeid}}]</button>
+                    </form>--%>
                 </li>
               </ul></td>
         </tr>
@@ -77,29 +72,8 @@
         }
      ]},
      methods : {
-
        video : function(youtubeid, seek){
-           var objParams = {
-               "data" : "/video.do?youtubeid=" + youtubeid + "&seek=" + seek
-           };
-
-           $.ajax({
-               url : "/showVideo.do",
-               dataType : "json",
-               type : "post",
-               data : objParams,
-               success : function(retVal){
-                   if(retVal.code == "OK") {
-                       alert(retVal.message);
-                   } else {
-                       alert(retVal.message);
-                   }
-               },
-               error : function(request, status, error){
-                   console.log("AJAX_ERROR");
-               }
-           });
-           //location.href="/video.do?youtubeid=" + youtubeid + "&seek=" + seek;
+         location.href="startVideo?youtubeid=" + youtubeid + "&seek=" + seek;
        }
      }
   });

@@ -34,6 +34,18 @@ public class TestController {
         }catch (Exception e){
             e.printStackTrace();
         }
+        return "index1";
+    }
+
+    //selectVideo
+
+    @GetMapping("/selectVideo")
+    public String selectVideo(Model model){
+        try{
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return "videolist";
     }
 
@@ -77,6 +89,24 @@ public class TestController {
 
             System.out.println("data = " + data);
             model.addAttribute("data",data);
+            System.out.println("end video controller end");
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "video";
+    }
+    //seek
+    @RequestMapping(value = "/startVideo", method = RequestMethod.GET)
+    public String startVideo(Model model, HttpServletRequest request,
+                             @RequestParam(value="youtubeid") String youtubeid,
+                             @RequestParam(value="seek") String seek){
+        try{
+
+            System.out.println("youtubeid = " + youtubeid);
+            System.out.println("seek = " + seek);
+            model.addAttribute("youtubeid",youtubeid);
+            model.addAttribute("seek",seek);
             System.out.println("end video controller end");
 
         }catch (Exception e){
