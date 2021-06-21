@@ -43,7 +43,7 @@
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">AI 아이트래킹 기술을 사용한 비대면 강의 학습 환경 개선</p>
+                        <p class="text-white-75 mb-5">AI 얼굴인식 기술을 사용한 비대면 강의 학습 환경 개선</p>
                         <a class="btn btn-primary btn-xl" href="/selectVideo">학습 시작</a>
                     </div>
                 </div>
