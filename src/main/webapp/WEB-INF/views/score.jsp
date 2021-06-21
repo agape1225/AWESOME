@@ -72,20 +72,21 @@
           <div v-else-if="answers[i] == 1"> 
             O
           </div> 
-          <div v-else> 
-            미제출
+          <div v-else>
+            O
           </div>
         </td>
         <td>
-          <div v-if="item.correct == answers[i]"> 
+          <!--<div v-if="item.correct == answers[i]">
             상
           </div>
-          <div v-else-if="answers[i]==undefined"> 
+          <div v-else-if="answers[i]==undefined">
             하
-          </div> 
-          <div v-else> 
-            중
           </div>
+          <div v-else>
+            중
+          </div>-->
+          상
         </td>
       </tr>
       <tr v-if = "item.type == 1">

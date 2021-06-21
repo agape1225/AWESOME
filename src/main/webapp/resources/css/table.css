@@ -16,14 +16,6 @@ h2{
     color: rgb(0, 0, 0);
     padding: 7px 0;
 }
-
-.outer {
-    display: flex;
-}
-
-.inner {
-    margin: auto;
-}
 button {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -90,4 +82,12 @@ button:hover {
 ul {
     list-style: none;
     padding-left: 0px;
+}
+
+.outer {
+    display: flex;
+}
+
+.inner {
+    margin: auto;
 }
