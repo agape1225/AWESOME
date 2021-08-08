@@ -1,5 +1,15 @@
 # AWESOME
-비대면강의 집중도 분석 시스템
+
+>프로젝트 설명
+ - 비대면강의 집중도 분석 시스템
+
+> 구현기술
+ 1. Java Spring Framework 사용 (MVC)
+ 2. Mysql을 활용한 Database 관리
+ 3. Logistic Regression 알고리즘을 활용한 집중도 분석
+ 4. Open Face Api를 활용한 Dataset 생성
+ 5. 학습 Dataset생성의 자동화
+
 
 ![img1](./for_readme/001.png)
 ![img1](./for_readme/002.png)
